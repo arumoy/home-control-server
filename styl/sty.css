@@ -1,0 +1,22 @@
+header {
+    background: maroon;
+    color: burlywood;
+    line-height: 200%;
+    font-size: 150%;
+    text-align: center;
+}
+
+body {
+    background: #d1ff95;
+    line-height: 150%;
+    margin: auto;
+    width: 600px;
+}
+
+html {
+    background: #000b58;
+}
+
+div {
+    margin: 5px;
+}
