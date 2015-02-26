@@ -12,7 +12,7 @@
 </header>
 <div id="dash">
     <?php
-    if(!$link = mysqli_connect('localhost', 'arumoy', 'ohms', 'php_test', '3306')) {
+    if(!$link = mysqli_connect('localhost', 'arumoy', 'ohms', 'arumoy', '3306')) {
         echo "Connection Failed...\n";
         goto ending;
     }
@@ -38,7 +38,7 @@
     $magazine = null;
     if($result = mysqli_query($link, $query)) {
         echo "<span id=\"status_label\"></span>\n";
-        echo "<select id=\"ddlist\" onchange='zigbee()'>\n";
+        echo "<select id=\"ddlist\" onclick='zigbee()'>\n";
         while($row = mysqli_fetch_array($result)) {
             echo "\t<optgroup label=\"".$row['room_alias']."\">\n";
             $qr = "SELECT appliance_alias, appl_id FROM dat WHERE room_alias = '{$row['room_alias']}' AND user_id = '{$usn}'";
