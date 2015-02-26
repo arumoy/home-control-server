@@ -12,7 +12,7 @@
 </header>
 <div id="dash">
     <?php
-    if(!$link = mysqli_connect('localhost', 'arumoy', 'oh', 'arumoy', '3306')) {
+    if(!$link = mysqli_connect('localhost', 'arumoy', 'ohms', 'php_test', '3306')) {
         echo "Connection Failed...\n";
         goto ending;
     }
