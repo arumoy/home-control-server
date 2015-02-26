@@ -20,3 +20,14 @@ html {
 div {
     margin: 5px;
 }
+
+#ddlist {
+    float: left;
+}
+
+#status_label {
+    float: right;
+    font-size: 200%;
+    background: yellow;
+    color: green;
+}

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>DashBoard :: Home Control</title>
     <link rel="stylesheet" href="../styl/sty.css">
+    <script src="../js/f1.js"></script>
 </head>
 <body>
 <header>
@@ -11,7 +12,7 @@
 </header>
 <div id="dash">
     <?php
-    if(!$link = mysqli_connect('localhost', 'db_user_name', 'db_password', 'db_name', '3306')) {
+    if(!$link = mysqli_connect('localhost', 'arumoy', 'oh', 'arumoy', '3306')) {
         echo "Connection Failed...\n";
         goto ending;
     }
@@ -36,7 +37,8 @@
     $query = "SELECT DISTINCT room_alias FROM dat WHERE user_id = '{$usn}'";
     $magazine = null;
     if($result = mysqli_query($link, $query)) {
-        echo "<select>\n";
+        echo "<span id=\"status_label\"></span>\n";
+        echo "<select id=\"ddlist\" onchange='zigbee()'>\n";
         while($row = mysqli_fetch_array($result)) {
             echo "\t<optgroup label=\"".$row['room_alias']."\">\n";
             $qr = "SELECT appliance_alias, appl_id FROM dat WHERE room_alias = '{$row['room_alias']}' AND user_id = '{$usn}'";
