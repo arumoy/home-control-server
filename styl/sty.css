@@ -7,14 +7,14 @@ header {
 }
 
 body {
-    background: #d1ff95;
+    background: #cee672;
     line-height: 150%;
     margin: auto;
     width: 600px;
 }
 
 html {
-    background: #000b58;
+    background: lightblue;
 }
 
 div {
@@ -25,9 +25,18 @@ div {
     float: left;
 }
 
-#status_label {
-    float: right;
+.appl {
+    line-height: 400%;
     font-size: 200%;
-    background: yellow;
-    color: green;
+    color: white;
+    margin: 5px;
 }
+
+.on {
+    background: green;
+}
+
+.off {
+    background: red;
+}
+

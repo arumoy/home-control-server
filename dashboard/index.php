@@ -37,19 +37,28 @@
     $query = "SELECT DISTINCT room_alias FROM dat WHERE user_id = '{$usn}'";
     $magazine = null;
     if($result = mysqli_query($link, $query)) {
-        echo "<span id=\"status_label\"></span>\n";
-        echo "<select id=\"ddlist\" onclick='zigbee()'>\n";
+        echo "<div id=\"ddlist\">\n";
         while($row = mysqli_fetch_array($result)) {
-            echo "\t<optgroup label=\"".$row['room_alias']."\">\n";
-            $qr = "SELECT appliance_alias, appl_id FROM dat WHERE room_alias = '{$row['room_alias']}' AND user_id = '{$usn}'";
+            echo "\t<div id=\"".$row['room_alias']."\">\n";
+            echo "\t<h3>".$row['room_alias']."</h3>\n";
+            $qr = "SELECT appliance_alias, appl_id, status FROM dat WHERE room_alias = '{$row['room_alias']}' AND user_id = '{$usn}'";
             $res = mysqli_query($link, $qr);
             while($banana = mysqli_fetch_array($res)) {
-                echo "\t<option value=\"".$banana['appl_id']."\">".$banana['appliance_alias']."</option>\n";
+                /**
+                 * Render every single alliance
+                 */
+                echo "\t\t<span value=\"".$banana['appl_id']."\" class=\"appl ";
+                if($banana['status'] == "on") {
+                    echo "on";
+                } else {
+                    echo "off";
+                }
+                echo "\">".$banana['appliance_alias']."</span>\n";
 
             }
-            echo "\t</optgroup>\n";
+            echo "\t</div>\n";
         }
-        echo "</select>\n";
+        echo "</div>\n";
     }
     ending:
     /* End of the End */
