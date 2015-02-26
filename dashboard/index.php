@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <title>DashBoard :: Home Control</title>
     <link rel="stylesheet" href="../styl/sty.css">
+    <script src="../js/jquery.js"></script>
     <script src="../js/f1.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
 </head>
 <body>
 <header>
@@ -47,13 +49,13 @@
                 /**
                  * Render every single alliance
                  */
-                echo "\t\t<span value=\"".$banana['appl_id']."\" class=\"appl ";
+                echo "\t\t<button id=\"".$banana['appl_id']."\" class=\"appl ";
                 if($banana['status'] == "on") {
                     echo "on";
                 } else {
                     echo "off";
                 }
-                echo "\">".$banana['appliance_alias']."</span>\n";
+                echo "\" onclick=\"toggleStatus(this.id)\">".$banana['appliance_alias']."</button>\n";
 
             }
             echo "\t</div>\n";
