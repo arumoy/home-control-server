@@ -10,11 +10,13 @@ body {
     background: #cee672;
     line-height: 150%;
     margin: auto;
-    width: 600px;
+    width: 800px;
+    min-height: 100%;
 }
 
 html {
     background: lightblue;
+    height: 100%;
 }
 
 div {
@@ -30,14 +32,6 @@ div {
     font-size: 200%;
     color: white;
     margin: 5px;
-}
-
-.on {
-    background: green;
-}
-
-.off {
-    background: red;
 }
 
 button {

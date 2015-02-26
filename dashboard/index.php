@@ -49,13 +49,13 @@
                 /**
                  * Render every single alliance
                  */
-                echo "\t\t<button id=\"".$banana['appl_id']."\" class=\"appl ";
-                if($banana['status'] == "on") {
-                    echo "on";
-                } else {
-                    echo "off";
+                echo "\t\t<button id=\"".$banana['appl_id']."\" class=\"appl\" ";
+                if($banana['status'] == "off") {
+                    echo "style=\"background: red;\"";
+                } elseif ($banana['status'] == "on") {
+                    echo "style=\"background: green;\"";
                 }
-                echo "\" onclick=\"toggleStatus(this.id)\">".$banana['appliance_alias']."</button>\n";
+                echo " onclick=\"toggleStatus(this.id)\"><b>".$banana['appliance_alias']."</b></button>\n";
 
             }
             echo "\t</div>\n";

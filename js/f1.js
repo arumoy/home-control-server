@@ -2,21 +2,33 @@
  * Created by arumoy on 26/2/15.
  */
 function toggleStatus(id_me) {
-    console.log("Clicked");
-    var ov = $("#"+id_me);
-    ov.click(function () {
-        if(ov.hasClass("on")) {
-            console.log("on found in "+id_me);
-            ov.removeClass("on");
-            console.log("on removed from "+id_me);
-            ov.addClass("off");
-            console.log("off added to "+id_me);
-        } else {
-            console.log("off found in "+id_me);
-            ov.removeClass("off");
-            console.log("off removed from "+id_me);
-            ov.addClass("on");
-            console.log("on added to "+id_me);
+    var transitCall = new XMLHttpRequest();
+
+    transitCall.onreadystatechange = function() {
+        if(transitCall.readyState == 3) {
+            //var pv0 = window.getComputedStyle(document.getElementById(id_me)).getPropertyValue('background');
+            document.getElementById(id_me).style.background = 'orange';
         }
-    })
+
+        if(transitCall.readyState == 1) {
+            document.getElementById(id_me).style.background = 'lightblue';
+        }
+
+        if(transitCall.readyState == 2) {
+            document.getElementById(id_me).style.background = 'blue';
+        }
+
+        if(transitCall.readyState == 4 && transitCall.status == 200) {
+            if(transitCall.responseText == "on") {
+                document.getElementById(id_me).style.background = 'green';
+            } else if (transitCall.responseText == "off") {
+                document.getElementById(id_me).style.background = 'red';
+            } else {
+                document.getElementById(id_me).style.background = 'grey';
+            }
+        }
+    }
+    var idString = "?id="+id_me;
+    transitCall.open("GET","toggler.php"+idString,true);
+    transitCall.send(null);
 }
