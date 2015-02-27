@@ -32,3 +32,21 @@ function toggleStatus(id_me) {
     transitCall.open("GET","toggler.php"+idString,true);
     transitCall.send(null);
 }
+
+
+function blobReload(id_me) {
+    console.log("sdfs");
+    setInterval(function() {
+        jQuery.ajax({
+            url:"refresher.php?id="+id_me, type:"GET", success: function(data) {
+                if(data == "on") {
+                    document.getElementById(id_me).style.background = 'green';
+                } else if (data == "off") {
+                    document.getElementById(id_me).style.background = 'red';
+                } else {
+                    document.getElementById(id_me).style.background = 'grey';
+                }
+            }
+        });
+    }, 1000);
+}

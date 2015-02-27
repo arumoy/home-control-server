@@ -7,6 +7,7 @@
     <script src="../js/jquery.js"></script>
     <script src="../js/f1.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Shadows+Into+Light' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Play:700' rel='stylesheet' type='text/css'>
 </head>
 <body>
 <header>
@@ -21,7 +22,7 @@
     $usn = trim(filter_input(INPUT_POST,'username'));
     $pass = md5(trim(filter_input(INPUT_POST,'pass')), false);
     if(empty($usn) || empty($pass)) {
-        header("Location: http://localhost");
+        header("Location: ".$_SERVER['HTTP_REFERER']);
     }
     $query = "SELECT username FROM arumoy.userpass WHERE username = '{$usn}' AND pass = '{$pass}'";
     if(!$result = mysqli_query($link, $query)) {
@@ -30,10 +31,12 @@
     } else {
         $row = mysqli_fetch_array($result);
         if(!($row['username'] == $usn)) {
-            header("Location: http://localhost");
+            header("Location: ".$_SERVER['HTTP_REFERER']);
             die();
         }
         echo "<p>Welcome, {$row['username']}</p>\n";
+        echo "<span style='background: red; color: white'><b>RED</b></span> elements are switched off. Click them to turn them on<br>";
+        echo "<span style='background: green; color: white'><b>GREEN</b></span> elements are switched on. Click them to turn them off";
     }
 
     $query = "SELECT DISTINCT room_alias FROM dat WHERE user_id = '{$usn}'";
@@ -55,7 +58,8 @@
                 } elseif ($banana['status'] == "on") {
                     echo "style=\"background: green;\"";
                 }
-                echo " onclick=\"toggleStatus(this.id)\"><b>".$banana['appliance_alias']."</b></button>\n";
+                echo " onclick=\"toggleStatus(this.id);\"><b>".$banana['appliance_alias'].
+                    "<script>blobReload(".$banana['appl_id'].")</script>"."</b></button>\n";
 
             }
             echo "\t</div>\n";
