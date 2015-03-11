@@ -15,7 +15,7 @@
 </header>
 <div id="dash">
     <?php
-    if(!$link = mysqli_connect('localhost', 'arumoy', 'ohms', 'arumoy', '3306')) {
+    if(!$link = mysqli_connect('localhost', 'arumoy', 'ohms', 'home_cont', '3306')) {
         echo "Connection Failed...\n";
         goto ending;
     }
@@ -24,7 +24,7 @@
     if(empty($usn) || empty($pass)) {
         header("Location: ".$_SERVER['HTTP_REFERER']);
     }
-    $query = "SELECT username FROM arumoy.userpass WHERE username = '{$usn}' AND pass = '{$pass}'";
+    $query = "SELECT username FROM home_cont.userpass WHERE username = '{$usn}' AND pass = '{$pass}'";
     if(!$result = mysqli_query($link, $query)) {
         echo "Query Didn't run.";
         goto ending;
