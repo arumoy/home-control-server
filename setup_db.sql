@@ -14,5 +14,6 @@ CREATE TABLE `dat` (
 CREATE TABLE `userpass` (
       `username` varchar(15) NOT NULL,
       `pass` varchar(32) DEFAULT NULL,
+      `home_ip` varchar(45),
       PRIMARY KEY (`username`)
 );
